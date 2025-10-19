@@ -14,10 +14,13 @@ fs.moveSync('Folder1/file1.txt', 'Folder2/file1.txt');
 const dir3 = 'Folder3';
 fs.ensureDirSync(dir3);
 
-fs.moveSync('Folder2/file1.txt', 'Folder3/file1.txt');
+fs.copySync('Folder2/file1.txt', 'Folder3/file1.txt');
 
-fs.removeSync('Folder3/file2.txt');
+fs.removeSync('Folder3/file1.txt');
+fs.removeSync('Folder2/file1.txt');
 fs.removeSync('Folder3');
 fs.removeSync('Folder2');
 fs.removeSync('Folder1');
+
+
 
