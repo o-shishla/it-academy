@@ -1,0 +1,14 @@
+# Default ignored files
+/shelf/
+/.idea/workspace.xml
+# Editor-based HTTP Client requests
+/httpRequests/
+# Datasource local storage ignored files
+/dataSources/
+/dataSources.local.xml
+/node_modules
+/.idea
+/.gitignore
+/homework_11/reports/
+homework_12/playwright/test-results
+homework_12/playwright/playwright-report
