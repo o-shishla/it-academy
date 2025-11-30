@@ -1,14 +1,28 @@
 import{test, expect} from 'playwright/test'
+
+const menuOptions = [{
+    label: 'Node.js',
+    expectedHeader: 'Playwright'
+}, {
+    label: 'Python',
+    expectedHeader: 'Playwright for Python'
+}, {
+    label: 'Java',
+    expectedHeader: 'Playwright for Java'
+}, {
+    label: '.Net',
+    expectedHeader: 'Playwright for .NET'
+}];
+
 test.describe('The dropdown menu in the header', async function(){
-    test('The options of dropdown menu should change the header title', async({page})=>{
-        await page.goto('https://playwright.dev');
-        await page.locator('a[href="#"]').hover();
-        const dropdownOptions = page.locator('.dropdown__menu li').nth(1);
-        const optionText = await dropdownOptions.innerText();
-        await dropdownOptions.click();
-        if(optionText==='Node.js'){
-            await expect(page.locator('.navbar__title.text--truncate')).toBe('Playwright')
+        for (const option of menuOptions) {
+            test(`Selecting "${option.label}" updates header`, async ({ page }) => {
+                await page.goto('https://playwright.dev');
+
+                await page.locator('a[href="#"]').hover();
+                await page.locator(`.dropdown__menu li >> text=${option.label}`).click();
+
+                await expect(page.locator('.navbar__title.text--truncate')).toHaveText(option.expectedHeader);
+            });
         }
-        await expect(page.locator('.navbar__title.text--truncate')).toContainText(optionText);
-    })
 })
